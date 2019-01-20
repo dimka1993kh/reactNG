@@ -3,8 +3,8 @@ const Menu = function(props) {
     const {items, opened} = props;
     if (opened) {
         return (
-            <div class="menu menu-open">
-            <div class="menu-toggle"><span></span></div>
+            <div className="menu menu-open">
+            <div className="menu-toggle"><span></span></div>
             <nav>
                 <ul>
                 <li><a href={items[0].href}>{items[0].title}</a></li>
@@ -16,8 +16,8 @@ const Menu = function(props) {
         )
     } else {
         return (
-            <div class="menu">
-                 <div class="menu-toggle"><span></span></div>
+            <div className="menu">
+                 <div className="menu-toggle"><span></span></div>
             </div>
         )
     }

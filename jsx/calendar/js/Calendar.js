@@ -38,29 +38,29 @@ RRR()
 const Calendar = function(props) {
     const {date, massive} = props;
     return (
-        <div class="ui-datepicker">
-        <div class="ui-datepicker-material-header">
-            <div class="ui-datepicker-material-day">{dayString[date.getDay() - 1]}</div> 
-            <div class="ui-datepicker-material-date">
-            <div class="ui-datepicker-material-day-num">{date.getDate()}</div>
-            <div class="ui-datepicker-material-month">{monthStringGenitive[date.getMonth() + 1]}</div>
-            <div class="ui-datepicker-material-year">{date.getFullYear()}</div>
+        <div className="ui-datepicker">
+        <div className="ui-datepicker-material-header">
+            <div className="ui-datepicker-material-day">{dayString[date.getDay() - 1]}</div> 
+            <div className="ui-datepicker-material-date">
+            <div className="ui-datepicker-material-day-num">{date.getDate()}</div>
+            <div className="ui-datepicker-material-month">{monthStringGenitive[date.getMonth() + 1]}</div>
+            <div className="ui-datepicker-material-year">{date.getFullYear()}</div>
             </div>
         </div>
-        <div class="ui-datepicker-header">
-            <div class="ui-datepicker-title">
-            <span class="ui-datepicker-month">{monthString[date.getMonth() + 1]}</span>&nbsp;<span class="ui-datepicker-year">{date.getFullYear()}</span>
+        <div className="ui-datepicker-header">
+            <div className="ui-datepicker-title">
+            <span className="ui-datepicker-month">{monthString[date.getMonth() + 1]}</span>&nbsp;<span class="ui-datepicker-year">{date.getFullYear()}</span>
             </div>
         </div>
-        <table class="ui-datepicker-calendar">
+        <table className="ui-datepicker-calendar">
             <colgroup>
             <col/>
             <col/>
             <col/>
             <col/>
             <col/>
-            <col class="ui-datepicker-week-end"/>
-            <col class="ui-datepicker-week-end"/>
+            <col className="ui-datepicker-week-end"/>
+            <col className="ui-datepicker-week-end"/>
             </colgroup>
             <thead>
             <tr>
