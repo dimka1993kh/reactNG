@@ -21,24 +21,13 @@ const FeedbackForm = ({data, onSubmit}) => {
     const saveForm = (event) => {
         event.preventDefault();
         console.log(lastForm)
-        }
-    const defaultSnacks = (event) => {
-        //const snacksFields = inputGroup.querySelectorAll('.contact-form__input--checkbox');
-        //snacksFields.forEach((field) => {
-            console.log(event.target)
-
-                return event.currentTarget.value === data.snacks[0] ? true : false;
-            
-            
-        //})
-    }    
-    
+        }    
     const changeName = (event) => {
         lastForm.name = nameField.value;
     }
     const changeSalutation = (event) => {
         if (event.currentTarget.checked) {
-            lastForm.salutation = event.currentTarget.value;
+            lastForm.salutation = event.target.value;
         }
     }
     const changeSubject = (event) => {
@@ -51,9 +40,14 @@ const FeedbackForm = ({data, onSubmit}) => {
         lastForm.email = emailField.value;
     }
     const changeSnacks = (event) => {
-        if (event.currentTarget.checked) {
-            lastForm.snacks = event.currentTarget.value;
-        }
+        let newSnacks = [];
+        document.querySelectorAll('.contact-form__input--checkbox').forEach((element) => {
+            if (element.checked) {
+                newSnacks.push(element.value);
+            }
+            lastForm.snacks = newSnacks;
+        })
+
     }
     return (
         <form className="content__form contact-form">
@@ -61,11 +55,11 @@ const FeedbackForm = ({data, onSubmit}) => {
           <p>Чем мы можем помочь?</p>
         </div>
         <div className="contact-form__input-group">
-          <input className="contact-form__input contact-form__input--radio" id="salutation-mr" name="salutation" type="radio" value="Мистер" defaultChecked={false} onChange={changeSalutation}/>
+          <input className="contact-form__input contact-form__input--radio" id="salutation-mr" name="salutation" type="radio" value="Мистер" defaultChecked={[data.salutation].some(element => element === 'Мистер')} onChange={changeSalutation}/>
           <label className="contact-form__label contact-form__label--radio" htmlFor="salutation-mr">Мистер</label>
-          <input className="contact-form__input contact-form__input--radio" id="salutation-mrs" name="salutation" type="radio" value="Мисис" defaultChecked onChange={changeSalutation}/>
+          <input className="contact-form__input contact-form__input--radio" id="salutation-mrs" name="salutation" type="radio" value="Мисис" defaultChecked={[data.salutation].some(element => element === 'Мисис')} onChange={changeSalutation}/>
           <label className="contact-form__label contact-form__label--radio" htmlFor="salutation-mrs">Мисис</label>
-          <input className="contact-form__input contact-form__input--radio" id="salutation-ms" name="salutation" type="radio" value="Мис" defaultChecked={false} onChange={changeSalutation}/>
+          <input className="contact-form__input contact-form__input--radio" id="salutation-ms" name="salutation" type="radio" value="Мис" defaultChecked={[data.salutation].some(element => element === 'Мис')} onChange={changeSalutation}/>
           <label className="contact-form__label contact-form__label--radio" htmlFor="salutation-ms">Мис</label>
         </div>
         <div className="contact-form__input-group">
@@ -89,9 +83,9 @@ const FeedbackForm = ({data, onSubmit}) => {
         </div>
         <div className="contact-form__input-group" ref={element => inputGroup = element}>
           <p className="contact-form__label--checkbox-group">Хочу получить:</p>
-          <input className="contact-form__input contact-form__input--checkbox" id="snacks-pizza" name="snacks" type="checkbox" value="пицца" /*onload={defaultSnacks()} defaultChecked={console.log(checkedBox)*/ defaultChecked={"пицца" === data.snacks[0] ? true : false}/>
+          <input className="contact-form__input contact-form__input--checkbox" id="snacks-pizza" name="snacks" type="checkbox" value="пицца" defaultChecked={data.snacks.includes('пицца')} onChange={changeSnacks}/>
           <label className="contact-form__label contact-form__label--checkbox" htmlFor="snacks-pizza">Пиццу</label>
-          <input className="contact-form__input contact-form__input--checkbox" id="snacks-cake" name="snacks" type="checkbox" value="пирог" /*onload={defaultSnacks()} defaultChecked={console.log(checkedBox)*/ defaultChecked={"пирог" === data.snacks[0] ? true : false}/>
+          <input className="contact-form__input contact-form__input--checkbox" id="snacks-cake" name="snacks" type="checkbox" value="пирог" defaultChecked={data.snacks.includes('пирог')} onChange={changeSnacks}/>
           <label className="contact-form__label contact-form__label--checkbox" htmlFor="snacks-cake">Пирог</label>
         </div>
         <button className="contact-form__button" type="submit" onClick={saveForm}>Отправить сообщение!</button>
