@@ -1,57 +1,26 @@
-
 const ReactRouter = window.ReactRouterDOM;
 const Router = ReactRouterDOM.HashRouter;
 const Route = ReactRouterDOM.Route;
-const NavLink = ReactRouterDOM.NavLink;
-const nameLink = [{
-    id: 1,
-    name: 'Главная',
-    link: ''
-    }, {
-    id: 2,
-    name: 'Дрифт-такси',
-    link: 'drift'
-    }, {
-    id: 3,
-    name: 'Time Attack',
-    link: 'timeattack'
-    }, {
-    id: 4,
-    name: 'Forza Karting',
-    link: 'forza'
-    }];
-    
+const NavLink = ReactRouterDOM.NavLink;   
 
-    
 class Menu extends React.Component {
+    constructor(props) {
+        super(props)
+        this.data = [{name: 'Главная', link: '/'},
+                     {name: 'Дрифт-такси', link: '/drift'},
+                     {name: 'Time Attack', link: '/timeattack'},
+                     {name: 'Forza Karting', link: '/forza'}]
+        console.log(this.props)
+    }
 render() {
     return (
-        <Router>
-            <Navigation/>
-        </Router>
+        <nav className={'menu'}> 
+            {this.data.map((item) => {
+                return (
+                    <NavLink exact className={'menu__item'} to={item.link} activeClassName={"menu__item-active"}>{item.name} </NavLink>
+                )
+            })}
+        </nav>
     )
     }
 }
-
-class Navigation extends React.Component {
-    render() {
-        return (
-            <nav className={'menu'}> 
-                {nameLink.map((item) => {
-                    return (
-                        <NavLink className={'menu__item'} to={item.link} activeClassName={"menu__item-active"}>{item.name} </NavLink>
-                    )
-                })}
-            </nav>
-        )
-    }
-}
-
-
-
-
-
-
-
-
-
