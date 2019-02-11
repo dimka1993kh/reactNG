@@ -1,38 +1,24 @@
 class ProgressBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({
-      currentPge: this.props.completed,
-      totlaPages: this.props.total
-    })
-   
     this.data = {
       datasets: [
-    {
-      data: [100, 0],
-      backgroundColor: '#4ca89a',
-      borderWidth: 0,
-
-    },
-    {
-      data: [1, 14],
-      backgroundColor: ['#96d6f4', 'white'],
-      borderWidth: 0,
-    }],
+        {data: [100, 0], backgroundColor: '#4ca89a', borderWidth: 0},
+        {data: [this.props.completed, this.props.total], backgroundColor: ['#96d6f4', 'white'], borderWidth: 0}
+      ]
     }
   }
-  calculate() {
-    this.data.datasets[1].data = [this.props.completed / this.props.total, 1 - this.props.completed / this.props.total];
-
+  calculate(newProps) {
+    this.data.datasets[1].data = [newProps, this.props.total - newProps];
   }
 
-  componentWillUpdate() {
-    this.calculate()
-    console.log(this.props)
-  }
-  componentDidUpdate() {
-    console.log(this.state)
-    this.chart.update()
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.completed !== this.props.completed) {
+      this.calculate(nextProps.completed);
+      this.chart.update();
+      return true;
+    }
+    return false;
   }
 
   componentDidMount() {
@@ -44,16 +30,15 @@ class ProgressBar extends React.Component {
         hover: {mode: null},
         cutoutPercentage: 45*100/59,
         rotation: 0
-      },
-
+      }
     });
-    console.log(this.chart)
     }
-    
-    
+       
   render() {    
     return (
-      <canvas id="progressCanvas" className="progress" />
+      <canvas id="progressCanvas" className="progress"/>
     );
   }
 }
+
+
