@@ -21,7 +21,7 @@ class Form extends React.Component {
   }
 
   handleForm() {
-    setTimeout(function() {
+    setTimeout(() => {
       const { name, text } = this.state
       console.log(name, text)
 

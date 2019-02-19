@@ -1,5 +1,5 @@
-import { Input } from 'antd';
 
+//const { Input } = antd;
 /*
 const Inputs = () => (
   <div>

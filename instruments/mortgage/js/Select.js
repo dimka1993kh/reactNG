@@ -1,4 +1,7 @@
-import {AutoComplete} from 'antd';
+
+
+
+//const {AutoComplete} = antd;
 /*
 const Autocomplete = () => (
   <div>
@@ -30,6 +33,7 @@ class AutoCompleteTest extends React.Component {
   render() {
     return (
       <AutoComplete
+      defaultValue="123"
       direction="down"
       selectedPosition="above"
       dataSource={source}
