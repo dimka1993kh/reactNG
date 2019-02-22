@@ -5,6 +5,7 @@ const SearchBoxView = ({ fixed }) => (
         <input
           className={`search-box ${fixed ? 'search-box_fixed' : null}`}
           placeholder="Поиск"
+          ref={node => searchField = node}
         >
         </input>
       </div>

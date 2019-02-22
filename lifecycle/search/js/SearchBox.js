@@ -1,4 +1,4 @@
-
+let searchField;
 class SearchBox extends React.Component {
 
   constructor(props) {
@@ -7,30 +7,28 @@ class SearchBox extends React.Component {
   }
 
   render() {
-    return <SearchBoxView fixed={this.state.fixed}/>
+    return <SearchBoxView fixed={this.state.fixed} />
   }
 
   isFixed() {
       if (window.pageYOffset <= 164) {
         return false;
       }
-      if (this.searchField.getBoundingClientRect().top <= 0) {
+      if (searchField.getBoundingClientRect().top <= 0) {
         return true;
       }
   }
 
   setPosition() {
     this.setState({
-      fixed: this.isFixed()
+      fixed: this.isFixed();
     })
   }
   componentDidMount() {
-    this.searchField = document.querySelector('.search-box');
-    this.setPosition = this.setPosition.bind(this)
-    window.addEventListener('scroll', this.setPosition)
+    window.addEventListener('scroll', this.setPosition.bind(this));
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.setPosition)
+    window.removeEventListener('scroll', this.setPosition.bind(this));
   }
 }
